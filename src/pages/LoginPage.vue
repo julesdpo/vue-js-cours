@@ -2,12 +2,42 @@
     <main>
         <h1>Login page</h1>
         <br>
-        <FormComponent />
+        <FormComponent :data="FormData" />
     </main>
 </template>
 
 <script setup lang="ts">
-import FormComponent from '../components/FormComponent.vue';
+import { reactive } from 'vue'
+import FormComponent from '../components/FormComponent.vue'
+
+const FormData = reactive({
+    fields: [
+        {
+            id: 'email',
+            type: 'email',
+            placeholder: 'Entrez votre email',
+        },
+        {
+            id: 'password',
+            type: 'password',
+            placeholder: 'Entrez votre mot de passe',
+        }
+    ],
+    buttons: [
+        {
+            id: 'submit-button',
+            type: 'submit',
+            textContent: 'Valider',
+            class: 'is-primary'
+        },
+        {
+            id: 'reset-button',
+            type: 'reset',
+            textContent: 'Réinitialiser',
+            class: 'is-light'
+        }
+    ]
+});
 </script>
 
 <style lang="scss">

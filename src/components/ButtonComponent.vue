@@ -1,8 +1,9 @@
 <template>
     <button 
     :id="data.id"
-    :class="data.class ? data.class : ''" 
-    :type="data.type ? data.type : 'button'">
+    :class="'button ' + (data.class ? data.class : '')" 
+    :type="data.type ? data.type : 'button'"
+    > {{ data.textContent }}
     </button>
 </template>
 
@@ -10,9 +11,10 @@
 
 interface ButtonComponentProperties{
     data:{
+        textContent: string,
         id: string,
         class?: string,
-        type?: string,
+        type?: 'submit' | 'reset' | 'button',
     }
     
 }
