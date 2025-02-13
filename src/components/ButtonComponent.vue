@@ -1,16 +1,18 @@
 <template>
     <button 
-    :class="data.class" 
-    :type="data.type">
+    :id="data.id"
+    :class="data.class ? data.class : ''" 
+    :type="data.type ? data.type : 'button'">
     </button>
 </template>
 
 <script setup lang="ts">
 
 interface ButtonComponentProperties{
-    data;{
-        class: string,
-        type: string,
+    data:{
+        id: string,
+        class?: string,
+        type?: string,
     }
     
 }
