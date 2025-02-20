@@ -1,11 +1,8 @@
 <template>
     <main>
-        <h1>Login page</h1>
+        <h1>Register page</h1>
         <br>
         <FormComponent :data="FormData" />
-        <br>
-        <p>Pas de compte? Inscrivez vous: </p>
-        <router-link to="/register">Register</router-link>
     </main>
 </template>
 
@@ -16,6 +13,16 @@ import FormComponent from '../components/FormComponent.vue'
 const FormData = reactive({
     fields: [
         {
+            id: 'firstname',
+            type: 'text',
+            placeholder: 'Entrez votre prenom',
+        },
+        {
+            id: 'lastname',
+            type: 'text',
+            placeholder: 'Entrez votre nom',
+        },
+        {
             id: 'email',
             type: 'email',
             placeholder: 'Entrez votre email',
@@ -24,13 +31,18 @@ const FormData = reactive({
             id: 'password',
             type: 'password',
             placeholder: 'Entrez votre mot de passe',
+        },
+        {
+            id: 'confirm-password',
+            type: 'password',
+            placeholder: 'Confirmez votre mot de passe',
         }
     ],
     buttons: [
         {
             id: 'submit-button',
             type: 'submit' as 'submit',
-            textContent: 'Valider',
+            textContent: 'S\'inscrire',
             class: 'is-primary'
         },
         {

@@ -1,5 +1,5 @@
 <template>
-    <form action="post">
+    <form method="post">
         <section>
             <FieldComponent v-for="(field, index) in data.fields" 
                 :key="index" 
