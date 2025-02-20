@@ -1,7 +1,8 @@
 <template>
     <form method="post">
         <section>
-            <FieldComponent v-for="(field, index) in data.fields" 
+            <FieldComponent @fieldChange="onFieldChange"
+             v-for="(field, index) in data.fields" 
                 :key="index" 
                 :data="field" />
         </section>
@@ -25,6 +26,7 @@ interface FormComponentProperties {
             type?: string;
             placeholder: string;
             class?: string;
+            value?: string; // Ajout de la propriété value
         }>;
         buttons: Array<{
             id: string;
@@ -36,4 +38,12 @@ interface FormComponentProperties {
 }
 
 defineProps<FormComponentProperties>();
+const emit = defineEmits(['fieldChange']);
+
+const onFieldChange = ({id, value}:{id: string, value: string}) => {
+    console.log("id", id);
+    console.log("value", value);
+    emit('fieldChange', { id, value });
+}
+
 </script>

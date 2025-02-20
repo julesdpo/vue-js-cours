@@ -2,7 +2,7 @@
     <main>
         <h1>Login page</h1>
         <br>
-        <FormComponent :data="FormData" />
+        <FormComponent :data="FormData" @fieldChange="handleFieldChange" />
         <br>
         <p>Pas de compte? Inscrivez vous: </p>
         <router-link to="/register">Register</router-link>
@@ -12,6 +12,13 @@
 <script setup lang="ts">
 import { reactive } from 'vue'
 import FormComponent from '../components/FormComponent.vue'
+import { useAuthStore } from '../stores/auth-store'
+import { storeToRefs } from 'pinia'
+
+const authStore = useAuthStore()
+const { getToken } = storeToRefs(authStore)
+
+const finalFormData = reactive({}) as any
 
 const FormData = reactive({
     fields: [
@@ -19,11 +26,13 @@ const FormData = reactive({
             id: 'email',
             type: 'email',
             placeholder: 'Entrez votre email',
+            value: '' // Ajout de la propriété value
         },
         {
             id: 'password',
             type: 'password',
             placeholder: 'Entrez votre mot de passe',
+            value: '' // Ajout de la propriété value
         }
     ],
     buttons: [
@@ -41,6 +50,19 @@ const FormData = reactive({
         }
     ]
 });
+
+const handleFieldChange = ({ id, value }: { id: string, value: string }) => {
+    console.log(`Field changed: ${id} = ${value}`);
+    const field = FormData.fields.find(f => f.id === id);
+    if (field) {
+        field.value = value;
+    }
+};
+
+const submitHandler = () => {
+        authStore.login(finalFormData)
+};
+
 </script>
 
 <style lang="scss">
