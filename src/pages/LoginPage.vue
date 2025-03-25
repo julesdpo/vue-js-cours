@@ -56,6 +56,7 @@ const handleFieldChange = ({ id, value }: { id: string, value: string }) => {
     const field = FormData.fields.find(f => f.id === id);
     if (field) {
         field.value = value;
+        finalFormData[id] = value;
     }
 };
 
